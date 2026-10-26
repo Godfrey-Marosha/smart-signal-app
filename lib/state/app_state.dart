@@ -298,9 +298,9 @@ class AppState extends ChangeNotifier {
 
   int activeCount(Sector sector) => activePosts(sector).length;
 
-  bool isMine(CommunityPost p) => p.uid == repo.uid && !p.pilot;
+  bool isMine(CommunityPost p) => _repo != null && p.uid == _repo!.uid && !p.pilot;
 
-  bool hasJoined(CommunityPost p) => p.members.contains(repo.uid);
+  bool hasJoined(CommunityPost p) => _repo != null && p.members.contains(_repo!.uid);
 
   Future<void> addPost({
     required PostTopic topic,
@@ -398,7 +398,11 @@ class AppState extends ChangeNotifier {
 
   Future<void> markBackOn(ServiceReport report) => repo.markRestored(report, now);
 
-  List<ServiceReport> get myOpenReports => reports.where((r) => r.uid == repo.uid && r.isOpen && !r.pilot).toList();
+  List<ServiceReport> get myOpenReports {
+    final uid = _repo?.uid;
+    if (uid == null) return const [];
+    return reports.where((r) => r.uid == uid && r.isOpen && !r.pilot).toList();
+  }
 
   /// Open problems reported in the last 12 hours, grouped by service.
   Map<Service, List<ServiceReport>> get openByService {

@@ -56,6 +56,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final state = AppScope.of(context);
+    // Signed out (or household removed) while this screen is still on its
+    // way off: draw nothing instead of crashing on a missing household.
+    if (state.household == null || state.user == null) return const Scaffold();
     final h = state.household!;
     final user = state.user;
     final via = switch (user?.provider) { 'google' => 'Google', 'apple' => 'Apple', 'demo' => 'Demo', _ => 'Email' };
