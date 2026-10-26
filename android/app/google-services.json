@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "776502589511",
+    "project_id": "street-signal-app-8f363",
+    "storage_bucket": "street-signal-app-8f363.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776502589511:android:97d7cd362e274e05369962",
+        "android_client_info": {
+          "package_name": "com.example.street_smart_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776502589511-9bh34vivbgv57797s3nabm5uebvtenrg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByFLdn5LVxs07Rz8df9Qrqi8XBkh0PYXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776502589511-9bh34vivbgv57797s3nabm5uebvtenrg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "776502589511-hk5aq1fophc2ltfpmmeudomdo81lqbeu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.streetSmartApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776502589511:android:747e566ade069573369962",
+        "android_client_info": {
+          "package_name": "za.co.streetsignal.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776502589511-9bh34vivbgv57797s3nabm5uebvtenrg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByFLdn5LVxs07Rz8df9Qrqi8XBkh0PYXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776502589511-9bh34vivbgv57797s3nabm5uebvtenrg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "776502589511-hk5aq1fophc2ltfpmmeudomdo81lqbeu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.streetSmartApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firebase/firestore.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "street-signal-app-8f363",
+          "appId": "1:776502589511:android:747e566ade069573369962",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "street-signal-app-8f363",
+          "configurations": {
+            "android": "1:776502589511:android:747e566ade069573369962"
+          }
+        }
+      }
+    }
+  }
+}
