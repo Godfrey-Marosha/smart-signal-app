@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../core/enums.dart';
@@ -25,7 +27,7 @@ class HomeScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${_greeting(now)}, ${h.displayName}', style: const TextStyle(fontWeight: FontWeight.w700)),
+            _Greeting(name: h.displayName),
             Text(h.ward.isEmpty ? h.areaName : '${h.areaName} · ${h.ward}', style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
@@ -78,7 +80,44 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-String _greeting(DateTime now) => now.hour < 12 ? 'Good morning' : now.hour < 18 ? 'Good afternoon' : 'Good evening';
+/// "Good morning, Thandi". Re-checks the clock every minute, so the
+/// greeting changes on time even if the app stays open on Home.
+class _Greeting extends StatefulWidget {
+  const _Greeting({required this.name});
+  final String name;
+
+  @override
+  State<_Greeting> createState() => _GreetingState();
+}
+
+class _GreetingState extends State<_Greeting> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final now = AppScope.of(context).now;
+    final name = widget.name.trim();
+    return Text(
+      name.isEmpty ? greetingFor(now) : '${greetingFor(now)}, $name',
+      style: const TextStyle(fontWeight: FontWeight.w700),
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+}
 
 /// The two newest community posts, with a link to the Community tab.
 List<Widget> _communityPreview(BuildContext context, AppState state) {

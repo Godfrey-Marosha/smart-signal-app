@@ -67,3 +67,12 @@ String percent(double p) => '${(p * 100).round()}%';
 /// Lowercase slug used as an area id, e.g. "Soweto Zone 6" -> "soweto-zone-6".
 String slug(String s) =>
     s.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-').replaceAll(RegExp(r'^-+|-+$'), '');
+
+/// Greeting for the resident's local time:
+/// 05:00-11:59 morning, 12:00-16:59 afternoon, 17:00-04:59 evening.
+String greetingFor(DateTime time) {
+  final hour = time.toLocal().hour;
+  if (hour >= 5 && hour < 12) return 'Good morning';
+  if (hour >= 12 && hour < 17) return 'Good afternoon';
+  return 'Good evening';
+}

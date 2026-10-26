@@ -25,7 +25,8 @@ class _AreaScreenState extends State<AreaScreen> {
     final recent = state.reports
         .where((r) => now.difference(r.startedAt).inDays < 7 && (_filter == null || r.service == _filter))
         .toList();
-    final mine = state.myOpenReports;
+    // The Water / Electricity filter applies to both sections.
+    final mine = state.myOpenReports.where((r) => _filter == null || r.service == _filter).toList();
 
     return Scaffold(
       appBar: AppBar(title: Text(state.household!.areaName), actions: const [AccountMenu()]),
@@ -62,7 +63,12 @@ class _AreaScreenState extends State<AreaScreen> {
           ],
           const SectionTitle('Last 7 days'),
           if (recent.isEmpty)
-            const Card(child: EmptyState(icon: Icons.check_circle_outline, title: 'No reports this week'))
+            Card(
+              child: EmptyState(
+                icon: Icons.check_circle_outline,
+                title: _filter == null ? 'No reports this week' : 'No ${_filter!.label.toLowerCase()} reports this week',
+              ),
+            )
           else
             ..._grouped(recent).map((g) => _IncidentTile(group: g, now: now)),
         ],
